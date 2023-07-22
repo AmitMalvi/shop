@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -15,7 +16,8 @@ public class BaseClass {
 	@BeforeTest
 	void setup(){
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		ChromeDriverService service=new ChromeDriverService.Builder().withLogOutput(System.out).build();
+		driver = new ChromeDriver(service);
 		driver.manage().window().maximize();
 		driver.get(url);
 		System.out.println(url+" link opened.");
